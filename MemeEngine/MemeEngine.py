@@ -1,6 +1,7 @@
 """MemeEngine module."""
 
 from PIL import Image, ImageDraw
+import os
 import random
 
 
@@ -14,6 +15,8 @@ class MemeEngine:
         :param output_dir: Directory where generated memes will be stored.
         """
         self.output_dir = output_dir
+        if not os.path.exists(output_dir):
+        os.makedirs(output_dir)
 
     def make_meme(self, 
                   img_path: str, 
@@ -42,8 +45,8 @@ class MemeEngine:
         image = image.resize((width, height), Image.NEAREST)
 
         # Replace unwanted characters in text and author
-        text = text.replace("\u2019", "")
-        author = author.replace("\u2019", "")
+        text = text.lstrip('\ufeff')  # Remove BOM if present
+        author = author.lstrip('\ufeff')  # Remove BOM from author
 
         # Randomize position for text placement
         x_pos = random.randint(0, int(width / 2))
