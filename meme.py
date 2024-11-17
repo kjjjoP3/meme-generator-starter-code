@@ -17,7 +17,10 @@ def generate_meme(path: str = None, body: str = None, author: str = None) -> str
     # Select a random image if no path is provided
     if not path:
         images_folder = os.path.join("_data", "photos", "dog")
-        image_files = [os.path.join(images_folder, img) for img in os.listdir(images_folder)]
+        image_files = [
+            os.path.join(images_folder, img)
+            for img in os.listdir(images_folder)
+        ]
         path = random.choice(image_files)
 
     # Generate a random quote if no body is provided
@@ -40,16 +43,28 @@ def generate_meme(path: str = None, body: str = None, author: str = None) -> str
 
     # Create the meme
     meme_generator = MemeEngine.MemeEngine('./tmp')
-    result_path = meme_generator.make_meme(path, selected_quote.body, selected_quote.author)
+    result_path = meme_generator.make_meme(
+        path, selected_quote.body, selected_quote.author
+    )
     print("Generated Meme Path: ", result_path)
     return result_path
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Meme Generator")
-    parser.add_argument('--path', type=str, default='./_data/photos/dog/xander_1.jpg', help='Path to an image file.')
-    parser.add_argument('--body', type=str, default=None, help='Quote body.')
-    parser.add_argument('--author', type=str, default=None, help='Quote author.')
+    parser.add_argument(
+        '--path', type=str,
+        default='./_data/photos/dog/xander_1.jpg',
+        help='Path to an image file.'
+    )
+    parser.add_argument(
+        '--body', type=str, default=None,
+        help='Quote body.'
+    )
+    parser.add_argument(
+        '--author', type=str, default=None,
+        help='Quote author.'
+    )
     args = parser.parse_args()
 
     try:

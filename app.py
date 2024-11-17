@@ -30,7 +30,12 @@ def load_resources():
 
     # Collect all image file paths
     images_directory = "./_data/photos/dog/"
-    image_paths = [os.path.join(root, file) for root, _, files in os.walk(images_directory) for file in files]
+    image_paths = [
+    os.path.join(root, file)
+    for root, _, files in os.walk(images_directory)
+    for file in files
+    ]
+
 
     return quotes, image_paths
 
@@ -48,7 +53,12 @@ def meme_rand():
     selected_image = random.choice(IMAGES)
     selected_quote = random.choice(QUOTES)
 
-    meme_path = meme_engine.make_meme(selected_image, selected_quote.body, selected_quote.author)
+    meme_path = meme_engine.make_meme(
+    selected_image,
+    selected_quote.body,
+    selected_quote.author
+    )
+
     return render_template('meme.html', path=meme_path)
 
 

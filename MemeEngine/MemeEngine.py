@@ -16,13 +16,11 @@ class MemeEngine:
         """
         self.output_dir = output_dir
         if not os.path.exists(output_dir):
-        os.makedirs(output_dir)
+            os.makedirs(output_dir)
 
-    def make_meme(self, 
-                  img_path: str, 
-                  text: str, 
-                  author: str, 
-                  width: int = 500) -> str:
+    def make_meme(
+        self, img_path: str, text: str, author: str, width: int = 500
+    ) -> str:
         """
         Create a meme by overlaying text onto an image.
 
@@ -54,8 +52,8 @@ class MemeEngine:
 
         # Draw the text on the image
         draw = ImageDraw.Draw(image)
-        draw.text((x_pos, y_pos), text, fill='white')
-        draw.text((x_pos, y_pos + 20), f"   - {author}", fill='white')
+        draw.text((x_pos, y_pos), text, fill="white")
+        draw.text((x_pos, y_pos + 20), f"   - {author}", fill="white")
 
         # Save the modified image
         try:

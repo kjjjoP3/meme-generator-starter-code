@@ -32,7 +32,9 @@ class DocxIngestor(IngestorInterface):
                 if content:
                     # Extract author and body by splitting on '-'
                     try:
-                        author, body = map(str.strip, content.split("-", maxsplit=1))
+                        author, body = map(
+                            str.strip, content.split("-", maxsplit=1)
+                        )
                         quotes.append(QuoteModel(body, author))
                     except ValueError:
                         print(f"Skipping malformed line: {content}")
